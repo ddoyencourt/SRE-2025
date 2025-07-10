@@ -3,7 +3,13 @@ pipeline {
     agent {
         node { label 'jkangent' }
           }
+    
     stages {
+
+        stage ('Clone repository') {
+            checkout scm
+        }
+        
         stage('build') {
             agent {
                 docker {
@@ -15,11 +21,13 @@ pipeline {
                 sh 'gradle -g gradle-user-home --version'
             }
         }
+        
         stage('Test') {
             steps {
                 echo 'Testing ...'
             }
         }
+        
         stage('Deploy') {
             steps {
                 echo 'Deploying ...'
