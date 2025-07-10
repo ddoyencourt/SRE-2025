@@ -1,15 +1,12 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent {
-        node {label 'jkangent'}
-    docker { 
-        image 'maven:3.9.10-eclipse-temurin-21-alpine'
-           }
+        node { label 'jkangent' }
           }
     stages {
         stage('build') {
             steps {
-                sh 'mvn --version'
+                sh 'docker version'
             }
         }
     }
